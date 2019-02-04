@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //invoke function Spawn first time after 1sec and every other 1 sec
+        //invoke function Spawn first time after 1sec and every other 1 second
         InvokeRepeating("Spawn",1,1);
         Spawn();
     }
