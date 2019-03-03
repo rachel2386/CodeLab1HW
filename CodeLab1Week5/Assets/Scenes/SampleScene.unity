@@ -260,9 +260,10 @@ GameObject:
   - component: {fileID: 79138845}
   - component: {fileID: 79138848}
   - component: {fileID: 79138849}
+  - component: {fileID: 79138850}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: Untagged
+  m_TagString: ScriptHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -339,6 +340,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be383b37ffd127249abe972e99b3c98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &79138850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79138844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a8594ebd2fb6a43b3ababe62df6471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultRecord: 300
+  randomPos: {x: 0, y: 0}
+  winningScore: 5
 --- !u!1001 &106947979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1700,7 +1716,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2525448825010513372}
+      - m_Target: {fileID: 79138850}
         m_MethodName: ResetPlayerRef
         m_Mode: 1
         m_Arguments:
@@ -3450,11 +3466,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2525448825010513370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19a8594ebd2fb6a43b3ababe62df6471, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c622391a0798884ea5053aec9ddf60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomPos: {x: 0, y: 0}
-  winningScore: 5
+  ReachedPrize: 0
 --- !u!1001 &4187342155501616591
 PrefabInstance:
   m_ObjectHideFlags: 0

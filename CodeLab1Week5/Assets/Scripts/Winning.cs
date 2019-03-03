@@ -14,7 +14,7 @@ public class Winning : MonoBehaviour
     private Scoring scoringScript;
     void Start()
     {
-        scoringScript = GameObject.Find("Prize").GetComponent<Scoring>();
+        scoringScript = GameObject.FindGameObjectWithTag("ScriptHolder").GetComponent<Scoring>();
         print("Debug mode: r to reset enabled");
     }
 

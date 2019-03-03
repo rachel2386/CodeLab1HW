@@ -8,7 +8,10 @@ using UnityEngine.UI;
 
 public class Scoring : MonoBehaviour
 {
-    private Collider2D _myCollider;
+    private GameObject Prize;
+    private Ontrigger PrizeTrigger;
+    
+    //private Collider2D _myCollider;
     private Text _playerScoreText;
     private Text _highScoreText;
     private Text _timeText;
@@ -72,7 +75,13 @@ public class Scoring : MonoBehaviour
     
     void Start()
     {
-        _myCollider = GetComponent<Collider2D>();
+        if (Prize != null)
+        {
+        }
+
+        Prize = GameObject.Find("Prize");
+        PrizeTrigger = Prize.GetComponent<Ontrigger>();
+        //_myCollider = Prize.GetComponent<Collider2D>();
         //Get the min and max bounds of the spawnable space 
         WallBounds = GameObject.Find("WallBounds").GetComponent<Collider2D>();
         _playerScoreText = GameObject.Find("1").GetComponent<Text>();
@@ -97,45 +106,25 @@ public class Scoring : MonoBehaviour
     }
 
    
-    private void OnTriggerEnter2D(Collider2D other)
+
+    void RespawnBanana()
     {
        
-           if (other.gameObject.CompareTag("Player"))
-           {
             if(playerScore < winningScore)
-               {
-                randomPos = new Vector2 (Random.Range(BoundsMin.x + transform.localScale.x,BoundsMax.x -transform.localScale.x),
-                                    Random.Range(BoundsMin.y + transform.localScale.y,BoundsMax.y -transform.localScale.y));
+            {
+                var prizeSize = Prize.transform.localScale;
+                randomPos = new Vector2 (Random.Range(BoundsMin.x + prizeSize.x,BoundsMax.x -prizeSize.x),
+                    Random.Range(BoundsMin.y + prizeSize.y,BoundsMax.y -prizeSize.y));
             
                 //new prize teleports to a position within the bounds of the Collider of WallBounds
-                transform.position = randomPos;
+                Prize.transform.position = randomPos;
                 
                 //Players score 1 point as a team
                 PlayerScore++;
-               
-                //tried to spawn prize using the position of the four walls
-                // new Vector2(Random.Range(leftWall.position.x + leftWall.localScale.x,rightWall.position.x - rightWall.localScale.x),
-                // Random.Range(lowWall.position.y + lowWall.localScale.y,topWall.position.y - topWall.localScale.y));
-                }
-               else
-               {
-                   Destroy(gameObject);
-               }
-           }
-        
-        //competitive version 
-        /*if (other.gameObject.name.Equals("Player1"))
-        {
+                PrizeTrigger.ReachedPrize = false;
+            }
             
-            player1Score++;
-
-        }
-        if (other.gameObject.name.Equals("Player2"))
-        {
-           
-            player1Score++;
-
-        }*/
+    
     }
     
     private void ShowText()
@@ -152,10 +141,18 @@ public class Scoring : MonoBehaviour
     private void Update()
     {
         ShowText();
+        
+        
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         
         if (currentScene == 1)
         {
+            if (PrizeTrigger.ReachedPrize)
+            {
+                
+                RespawnBanana();
+            }
+
             if (playerScore < winningScore)
             {
                 TimeSpent += Time.deltaTime;
