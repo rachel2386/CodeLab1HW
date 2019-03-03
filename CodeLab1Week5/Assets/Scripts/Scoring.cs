@@ -15,6 +15,7 @@ public class Scoring : MonoBehaviour
     
     private int playerScore;
     private const string PLAYER_PREF_TIMERECORD = "recordT";
+    private float defaultRecord = 300f;
 
     private bool newRecord = false;
     public int PlayerScore
@@ -31,7 +32,7 @@ public class Scoring : MonoBehaviour
         set
         {
             timeSpent = value;
-            _timeText.text = "time: " + System.Math.Round(timeSpent, 2);
+            _timeText.text = "Time: " + System.Math.Round(timeSpent, 2) + "s";
             
 
         } 
@@ -82,16 +83,16 @@ public class Scoring : MonoBehaviour
         
        
         
-        float playerpref = PlayerPrefs.GetFloat(PLAYER_PREF_TIMERECORD, 10f);
+        float playerpref = PlayerPrefs.GetFloat(PLAYER_PREF_TIMERECORD, defaultRecord);
         print("playerPrefFile" + playerpref);
-        _highScoreText.text = "Record: " + System.Math.Round(playerpref, 2);  
+        _highScoreText.text = "Record: " + System.Math.Round(playerpref, 2) + "s";  
         
 
     }
 
     public void ResetPlayerRef()
     {
-        PlayerPrefs.SetFloat(PLAYER_PREF_TIMERECORD, 10f);
+        PlayerPrefs.SetFloat(PLAYER_PREF_TIMERECORD, defaultRecord);
         print("Reset PlayerPref to " + PlayerPrefs.GetFloat(PLAYER_PREF_TIMERECORD));
     }
 
