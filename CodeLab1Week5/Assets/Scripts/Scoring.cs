@@ -15,7 +15,7 @@ public class Scoring : MonoBehaviour
     
     private int playerScore;
     private const string PLAYER_PREF_TIMERECORD = "recordT";
-    private float defaultRecord = 300f;
+    public float defaultRecord = 300f;
 
     private bool newRecord = false;
     public int PlayerScore
